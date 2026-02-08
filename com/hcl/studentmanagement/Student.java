@@ -1,6 +1,5 @@
 package com.hcl.studentmanagement;
 
-import java.util.Date;
 
 public class Student {
     private int id;
@@ -11,8 +10,13 @@ public class Student {
         this.name = name;
         this.id = id;
         this.dateOfJoining = dateOfJoining;
-        System.out.println(name + " " + id + " " + dateOfJoining+" added successfully");
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", name=" + name + ", dateOfJoining=" + dateOfJoining;
+    }
+
 }
 
 

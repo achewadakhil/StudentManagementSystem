@@ -8,5 +8,9 @@ public class PartTimeStudent extends Student {
         super(name, id, dateOfJoining);
         this.hours = 20;
     }
+
+    public int getHours() {
+        return hours;
+    }
 }
 
