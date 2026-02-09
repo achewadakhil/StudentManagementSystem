@@ -3,6 +3,7 @@ package com.hcl.studentmanagement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.hcl.studentmanagement.utils.InvalidChoiceException;
 
 public class Main {
 
@@ -25,38 +26,74 @@ public class Main {
     */
 
 
+    public static void validateChoice(int ch) throws InvalidChoiceException{
+        if(ch < 0 || ch > 11){
+            throw new InvalidChoiceException("Choice should be between 0 to 11");
+        }
+    }
+
+
     public static void main(String[] args) {
         
         sc = new Scanner(System.in);
+
+        StudentManager sms = new StudentManager();
         int ch = 0;
         System.out.println("STUDENT MANAGEMENT SYSTEM:");
         System.out.println("1)Add part time student");
         System.out.println("2)Add full time student ");
         System.out.println("3)Remove Student");
+        System.out.println("4)View student by id");
+        System.out.println("5)View all students");
+        System.out.println("6)Sort by Id");
        
         System.out.println("11)ViewAll");
-        do{
-            ch = sc.nextInt();
+        try{
+            do{
+                System.out.print("Enter choice :");
+                ch = sc.nextInt();
 
-            switch (ch) {
-                case 1:
-                    StudentManager.createPartTimeStudent();
-                break;
+                validateChoice(ch);
 
-                case 2 : 
-                    StudentManager.createFullTimeStudent();
-                break;
-                case 3 : 
-                    System.out.println("Enter id to remove : ");
-                    StudentManager.removeStudent(sc.nextInt());
-                case 11 : 
-                    StudentManager.printAllStudents();
-                break;
-                default:
+                switch (ch) {
+                    case 1:
+                        sms.createPartTimeStudent();
                     break;
-            }
 
-        }while(ch != 0);
+                    case 2 : 
+                        sms.createFullTimeStudent();
+                    break;
+                    case 3 : 
+                        System.out.println("Enter id to remove : ");
+                        sms.removeStudent(sc.nextInt());
+                    case 4 : 
+                        System.out.println("Enter id to view :");
+                        Student s = sms.viewStudent(sc.nextInt());
+                        if(s != null)   System.out.println(s);
+                        else System.out.println("Student not found");
+                        break;
+                    case 5 : 
+                        sms.printAllStudents();
+                        break;
+                    case 6 :
+                        List<Student> st = sms.sortById();
+                        for(Student ss : st){
+                            System.out.println(ss);
+                        }
+                        break;
+                    case 7 : 
+                        List<Student> ss = sms.sortByDate();
+                        for(Student s1 : ss){
+                            System.out.println(s1);
+                        }
+                    default:
+                        break;
+                }
+
+            }while(ch != 0);
+        }catch(InvalidChoiceException e){
+            System.out.println(e.getMessage());
+        }
         sc.close();
     }
     
