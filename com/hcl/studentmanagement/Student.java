@@ -12,6 +12,10 @@ public class Student {
         this.dateOfJoining = dateOfJoining;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     @Override
     public String toString() {
         return "id=" + id + ", name=" + name + ", dateOfJoining=" + dateOfJoining;
