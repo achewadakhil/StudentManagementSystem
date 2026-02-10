@@ -1,8 +1,11 @@
 package com.hcl.studentmanagement;
 
+// import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.hcl.studentmanagement.db.StudentManagerJDBC;
 import com.hcl.studentmanagement.utils.InvalidChoiceException;
 
 public class Main {
@@ -36,7 +39,6 @@ public class Main {
     public static void main(String[] args) {
         
         sc = new Scanner(System.in);
-
         StudentManager sms = new StudentManager();
         int ch = 0;
         System.out.println("STUDENT MANAGEMENT SYSTEM:");
@@ -46,6 +48,9 @@ public class Main {
         System.out.println("4)View student by id");
         System.out.println("5)View all students");
         System.out.println("6)Sort by Id");
+        System.out.println("7)Sort by Date");
+        // System.out.println("8)Sort by name");
+    
        
         System.out.println("11)ViewAll");
         try{
@@ -57,7 +62,8 @@ public class Main {
 
                 switch (ch) {
                     case 1:
-                        sms.createPartTimeStudent();
+                        // sms.createPartTimeStudent();
+                        StudentManagerJDBC.insertStudent("Akhil", java.sql.Date.valueOf("2004-08-08"), false, null, 10);
                     break;
 
                     case 2 : 
@@ -76,16 +82,17 @@ public class Main {
                         sms.printAllStudents();
                         break;
                     case 6 :
-                        List<Student> st = sms.sortById();
-                        for(Student ss : st){
+                        List<Student> soretdById = sms.sortById();
+                        for(Student ss : soretdById){
                             System.out.println(ss);
                         }
                         break;
                     case 7 : 
-                        List<Student> ss = sms.sortByDate();
-                        for(Student s1 : ss){
+                        List<Student> sortedByDate = sms.sortByDate();
+                        for(Student s1 : sortedByDate){
                             System.out.println(s1);
                         }
+                
                     default:
                         break;
                 }

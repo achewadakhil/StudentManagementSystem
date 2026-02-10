@@ -2,10 +2,13 @@ package com.hcl.studentmanagement;
 
 import java.time.LocalDate;
 
-public class Student {
+// import com.hcl.studentmanagement.db.StudentInterface;
+
+public class Student{
     private int id;
     private String name;
     private LocalDate dateOfJoining;
+    
    
     Student(String name, int id, LocalDate dateOfJoining){
         this.name = name;
@@ -13,10 +16,12 @@ public class Student {
         this.dateOfJoining = dateOfJoining;
     }
 
+    // @Override
     public int getId(){
         return this.id;
     }
 
+    // @Override
     public LocalDate getDate(){
         return this.dateOfJoining;
     }
