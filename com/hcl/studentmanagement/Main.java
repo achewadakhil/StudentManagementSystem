@@ -74,10 +74,7 @@ public class Main {
                         StudentManagerJDBC.removeStudent(sc.nextInt());
                     case 4 : 
                         System.out.println("Enter id to view :");
-                        Student s = sms.viewStudent(sc.nextInt());
-                        if(s != null)   System.out.println(s);
-                        else System.out.println("Student not found");
-                        break;
+                        StudentManagerJDBC.getStudentDetails(sc.nextInt());
                     case 5 : 
                         sms.printAllStudents();
                         break;

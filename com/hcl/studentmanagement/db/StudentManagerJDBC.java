@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
@@ -70,6 +71,32 @@ public class StudentManagerJDBC {
     }
 
 
+    public static void getStudentDetails(int id){
 
+
+        String sql = "select * from students where id = ?";
+        try(Connection con = getConnection();
+        
+            PreparedStatement ps = con.prepareStatement(sql)){
+            
+            ps.setInt(1,id);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+                String name = rs.getString("name");
+                Date doj = rs.getDate("dateOfJoin");
+                boolean isFullTime = rs.getBoolean("isFullTime");
+                int fees = rs.getInt("fees");   // careful with NULLs
+                int hours = rs.getInt("hours");
+
+                System.out.println(id + " " + name + " " + doj + " "+isFullTime+" "+fees +" "+hours);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }
