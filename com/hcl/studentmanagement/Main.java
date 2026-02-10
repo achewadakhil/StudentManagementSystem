@@ -76,7 +76,8 @@ public class Main {
                         System.out.println("Enter id to view :");
                         StudentManagerJDBC.getStudentDetails(sc.nextInt());
                     case 5 : 
-                        sms.printAllStudents();
+                        
+                        StudentManagerJDBC.viewStudents();
                         break;
                     case 6 :
                         List<Student> soretdById = sms.sortById();
