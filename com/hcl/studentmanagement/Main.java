@@ -67,11 +67,11 @@ public class Main {
                     break;
 
                     case 2 : 
-                        sms.createFullTimeStudent();
+                        StudentManagerJDBC.insertStudent("Akash", java.sql.Date.valueOf("2009-08-29"), true, 200000, null);
                     break;
                     case 3 : 
                         System.out.println("Enter id to remove : ");
-                        sms.removeStudent(sc.nextInt());
+                        StudentManagerJDBC.removeStudent(sc.nextInt());
                     case 4 : 
                         System.out.println("Enter id to view :");
                         Student s = sms.viewStudent(sc.nextInt());

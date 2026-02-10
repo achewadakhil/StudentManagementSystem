@@ -48,4 +48,28 @@ public class StudentManagerJDBC {
             e.printStackTrace();
         }
     }
+
+
+    public static void removeStudent(int id){
+
+        String sql = "delete from students where id = ?";
+        try(Connection con = getConnection();
+            
+            PreparedStatement ps = con.prepareStatement(sql)){
+            
+            ps.setInt(1,id);
+
+            int rowsAffected  = ps.executeUpdate();
+            
+            if(rowsAffected == 0) System.out.println("Couldn't delete");
+            else    System.out.println(id + " is deleted");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 }
