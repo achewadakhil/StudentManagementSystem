@@ -102,6 +102,7 @@ public class StudentManagerJDBC {
 
     public static void viewStudents(){
 
+
         String sql = "select * from students";
 
         try(Connection con = getConnection();
@@ -125,5 +126,55 @@ public class StudentManagerJDBC {
             e.printStackTrace();
         }
 
+    }
+
+
+    public static void sortById(){
+
+        try(Connection con = getConnection();
+            Statement st = con.createStatement()){
+            
+            String sql = "select * from students Order by id DESC";
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                Date doj = rs.getDate("dateOfJoin");
+                boolean isFullTime = rs.getBoolean("isFullTime");
+                int fees = rs.getInt("fees");   // careful with NULLs
+                int hours = rs.getInt("hours");
+
+                System.out.println(id + " " + name + " " + doj + " "+isFullTime+" "+fees +" "+hours);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void sortByDate(){
+
+        try(Connection con = getConnection();
+            Statement st = con.createStatement()){
+            
+            String sql = "select * from students Order by dateOfJoin DESC";
+
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                Date doj = rs.getDate("dateOfJoin");
+                boolean isFullTime = rs.getBoolean("isFullTime");
+                int fees = rs.getInt("fees");   // careful with NULLs
+                int hours = rs.getInt("hours");
+
+                System.out.println(id + " " + name + " " + doj + " "+isFullTime+" "+fees +" "+hours);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
